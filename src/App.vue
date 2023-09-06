@@ -27,24 +27,29 @@ header {
 
 .titulos {
   color: #ff5f0f;
+  justify-content: center;
+  display: flex;
+  font-size: 3rem;
 }
 
-.routers{
+.routers {
   display: flex;
   flex-direction: row;
   align-items: center;
   text-align: center;
+  padding: 1rem;
 }
 
 .rota {
   margin-right: 1rem;
 }
 
-.tit{
+.tit {
   background-color: #6304ae;
+  margin-top: -2rem;
 }
 
-main{
-  background-color: rgb(255, 255, 255);
+main {
+  background-color: #300055;
 }
 </style>
