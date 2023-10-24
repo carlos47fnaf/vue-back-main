@@ -1,32 +1,32 @@
 <script>
-import CamisetasApi from "@/api/camiseta";
-const camisetasApi = new CamisetasApi();
+import MoletonsApi from "@/api/moletom";
+const moletonsApi = new MoletonsApi();
 export default {
   data() {
     return {
-      camisetas: [],
-      camiseta: {},
+      moletons: [],
+      moletom: {},
     };
   },
   async created() {
-    this.camisetas = await camisetasApi.buscarTodasAsCamisetas();
+    this.moletons = await moletonsApi.buscarTodasOsMoletons();
   },
   methods: {
     async salvar() {
-      if (this.camiseta.id) {
-        await camisetasApi.atualizarCamiseta(this.camiseta);
+      if (this.moletom.id) {
+        await moletonsApi.atualizarMoletom(this.moletom);
       } else {
-        await camisetasApi.adicionarCamiseta(this.camiseta);
+        await moletonsApi.adicionarMoletom(this.moletom);
       }
-      this.camiseta = {};
-      this.camisetas = await camisetasApi.buscarTodasAsCamisetas();
+      this.moletom = {};
+      this.moletons = await moletonsApi.buscarTodasOsMoletons();
     },
-    editar(camiseta) {
-      Object.assign(this.camiseta, camiseta);
+    editar(moletom) {
+      Object.assign(this.moletom, moletom);
     },
-    async excluir(camiseta) {
-      await camisetasApi.excluirCamiseta(camiseta.id);
-      this.camisetas = await camisetasApi.buscarTodasAsCamisetas();
+    async excluir(moletom) {
+      await moletonsApi.excluirCamiseta(moletom.id);
+      this.moletons = await moletonsApi.buscarTodasOsMoletons();
     },
   },
 };
@@ -34,27 +34,27 @@ export default {
 
 <template>
   <div class="tit">
-    <h1 class="titulos">Camisetas</h1>
+    <h1 class="titulos">Moletons</h1>
   </div>
   <div class="form">
-    <input type="text" v-model="camiseta.titulo" placeholder="Nome" />
-    <input type="text" v-model="camiseta.descrição" placeholder="Descrição" />
-    <input type="number" v-model="camiseta.preço" />
+    <input type="text" v-model="moletom.titulo" placeholder="Nome" />
+    <input type="text" v-model="moletom.descrição" placeholder="Descrição" />
+    <input type="number" v-model="moletom.preço" />
     <button id="botao" @click="salvar">Salvar</button>
   </div>
 
   <ul style="list-style: none">
-    <li v-for="camiseta in camisetas" :key="camiseta.id">
-      <span @click="editar(camiseta)">
+    <li v-for="moletom in moletons" :key="moletom.id">
+      <span @click="editar(moletom)">
         <div class="sub">
-          <div class="titulo">{{ camiseta.titulo }}</div>
-          <div class="id">Id ({{ camiseta.id }})</div>
+          <div class="titulo">{{ moletom.titulo }}</div>
+          <div class="id">Id ({{ moletom.id }})</div>
         </div>
 
-        <div class="descricao">{{ camiseta.descricao }}</div>
+        <div class="descricao">{{ moletom.descricao }}</div>
         <div class="bot">
-          <button @click="excluir(camiseta)">Apagar</button>
-          <div class="preco">R${{ camiseta.preco }}</div>
+          <button @click="excluir(moletom)">Apagar</button>
+          <div class="preco">R${{ moletom.preco }}</div>
         </div>
       </span>
     </li>

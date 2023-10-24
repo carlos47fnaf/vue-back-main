@@ -3,6 +3,8 @@
     <div class="routers">
       <router-link :to="{ name: 'home' }" class="rota">Home</router-link>
       <router-link to="/camisetas" class="rota">Camisetas</router-link>
+      <router-link to="/estampas" class="rota">Estampas</router-link>
+      <router-link to="/moletons" class="rota">Moletons</router-link>
     </div>
     <main>
       <RouterView />

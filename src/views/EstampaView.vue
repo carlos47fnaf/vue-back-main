@@ -1,32 +1,32 @@
 <script>
-import CamisetasApi from "@/api/camiseta";
-const camisetasApi = new CamisetasApi();
+import EstampasApi from "@/api/estampa";
+const estampasApi = new EstampasApi();
 export default {
   data() {
     return {
-      camisetas: [],
-      camiseta: {},
+      estampas: [],
+      estampa: {},
     };
   },
   async created() {
-    this.camisetas = await camisetasApi.buscarTodasAsCamisetas();
+    this.estampas = await estampasApi.buscarTodasAsEstampas();
   },
   methods: {
     async salvar() {
-      if (this.camiseta.id) {
-        await camisetasApi.atualizarCamiseta(this.camiseta);
+      if (this.estampa.id) {
+        await estampasApi.atualizarEstampa(this.estampa);
       } else {
-        await camisetasApi.adicionarCamiseta(this.camiseta);
+        await estampasApi.adicionarEstampa(this.estampa);
       }
-      this.camiseta = {};
-      this.camisetas = await camisetasApi.buscarTodasAsCamisetas();
+      this.estampa = {};
+      this.estampas = await estampasApi.buscarTodasAsEstampas();
     },
-    editar(camiseta) {
-      Object.assign(this.camiseta, camiseta);
+    editar(estampa) {
+      Object.assign(this.estampa, estampa);
     },
-    async excluir(camiseta) {
-      await camisetasApi.excluirCamiseta(camiseta.id);
-      this.camisetas = await camisetasApi.buscarTodasAsCamisetas();
+    async excluir(estampa) {
+      await estampasApi.excluirEstampa(estampa.id);
+      this.estampas = await estampasApi.buscarTodasAsEstampas();
     },
   },
 };
@@ -34,27 +34,27 @@ export default {
 
 <template>
   <div class="tit">
-    <h1 class="titulos">Camisetas</h1>
+    <h1 class="titulos">Estampas</h1>
   </div>
   <div class="form">
-    <input type="text" v-model="camiseta.titulo" placeholder="Nome" />
-    <input type="text" v-model="camiseta.descrição" placeholder="Descrição" />
-    <input type="number" v-model="camiseta.preço" />
+    <input type="text" v-model="estampa.titulo" placeholder="Nome" />
+    <input type="text" v-model="estampa.descrição" placeholder="Descrição" />
+    <input type="number" v-model="estampa.preço" />
     <button id="botao" @click="salvar">Salvar</button>
   </div>
 
   <ul style="list-style: none">
-    <li v-for="camiseta in camisetas" :key="camiseta.id">
-      <span @click="editar(camiseta)">
+    <li v-for="estampa in estampas" :key="estampa.id">
+      <span @click="editar(estampa)">
         <div class="sub">
-          <div class="titulo">{{ camiseta.titulo }}</div>
-          <div class="id">Id ({{ camiseta.id }})</div>
+          <div class="titulo">{{ estampa.titulo }}</div>
+          <div class="id">Id ({{ estampa.id }})</div>
         </div>
 
-        <div class="descricao">{{ camiseta.descricao }}</div>
+        <div class="descricao">{{ estampa.descricao }}</div>
         <div class="bot">
-          <button @click="excluir(camiseta)">Apagar</button>
-          <div class="preco">R${{ camiseta.preco }}</div>
+          <button @click="excluir(estampa)">Apagar</button>
+          <div class="preco">R${{ estampa.preco }}</div>
         </div>
       </span>
     </li>
