@@ -12,6 +12,9 @@
   </header>
 </template>
 <style>
+html{
+  background-color: #300055;
+}
 #app {
   font-family: Verdana, Geneva, Tahoma, sans-serif;
 }
